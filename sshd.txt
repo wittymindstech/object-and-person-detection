@@ -1,0 +1,74 @@
+gaurav@k8s-master:~$ ps -ef | grep sshd
+root      1539     1  0 11:25 ?        00:00:00 /usr/sbin/sshd -D
+gaurav   18818 18802  0 21:48 pts/0    00:00:00 grep --color=auto sshd
+gaurav@k8s-master:~$ 
+gaurav@k8s-master:~$ 
+gaurav@k8s-master:~$ 
+gaurav@k8s-master:~$ sudo service sshd status
+[sudo] password for gaurav: 
+● ssh.service - OpenBSD Secure Shell server
+   Loaded: loaded (/lib/systemd/system/ssh.service; enabled; vendor preset: enab
+   Active: active (running) since Mon 2019-04-29 11:25:38 IST; 10h ago
+  Process: 17827 ExecReload=/bin/kill -HUP $MAINPID (code=exited, status=0/SUCCE
+  Process: 17822 ExecReload=/usr/sbin/sshd -t (code=exited, status=0/SUCCESS)
+  Process: 1484 ExecStartPre=/usr/sbin/sshd -t (code=exited, status=0/SUCCESS)
+ Main PID: 1539 (sshd)
+    Tasks: 1 (limit: 4915)
+   CGroup: /system.slice/ssh.service
+           └─1539 /usr/sbin/sshd -D
+
+Apr 29 21:30:45 k8s-master systemd[1]: Reloading OpenBSD Secure Shell server.
+Apr 29 21:30:45 k8s-master sshd[1539]: Received SIGHUP; restarting.
+Apr 29 21:30:45 k8s-master systemd[1]: Reloaded OpenBSD Secure Shell server.
+Apr 29 21:30:45 k8s-master sshd[1539]: Server listening on 0.0.0.0 port 22.
+Apr 29 21:30:45 k8s-master sshd[1539]: Server listening on :: port 22.
+Apr 29 21:30:45 k8s-master systemd[1]: Reloading OpenBSD Secure Shell server.
+Apr 29 21:30:45 k8s-master sshd[1539]: Received SIGHUP; restarting.
+Apr 29 21:30:45 k8s-master systemd[1]: Reloaded OpenBSD Secure Shell server.
+Apr 29 21:30:45 k8s-master sshd[1539]: Server listening on 0.0.0.0 port 22.
+Apr 29 21:30:45 k8s-master sshd[1539]: Server listening on :: port 22.
+
+[1]+  Stopped                 sudo service sshd status
+gaurav@k8s-master:~$ 
+gaurav@k8s-master:~$ sudo service sshd stop
+gaurav@k8s-master:~$ sudo service sshd status
+● ssh.service - OpenBSD Secure Shell server
+   Loaded: loaded (/lib/systemd/system/ssh.service; enabled; vendor preset: enab
+   Active: inactive (dead) since Mon 2019-04-29 21:48:40 IST; 2s ago
+  Process: 17827 ExecReload=/bin/kill -HUP $MAINPID (code=exited, status=0/SUCCE
+  Process: 17822 ExecReload=/usr/sbin/sshd -t (code=exited, status=0/SUCCESS)
+  Process: 1539 ExecStart=/usr/sbin/sshd -D $SSHD_OPTS (code=exited, status=0/SU
+  Process: 1484 ExecStartPre=/usr/sbin/sshd -t (code=exited, status=0/SUCCESS)
+ Main PID: 1539 (code=exited, status=0/SUCCESS)
+
+Apr 29 21:30:45 k8s-master sshd[1539]: Server listening on 0.0.0.0 port 22.
+Apr 29 21:30:45 k8s-master sshd[1539]: Server listening on :: port 22.
+Apr 29 21:30:45 k8s-master systemd[1]: Reloading OpenBSD Secure Shell server.
+Apr 29 21:30:45 k8s-master sshd[1539]: Received SIGHUP; restarting.
+Apr 29 21:30:45 k8s-master systemd[1]: Reloaded OpenBSD Secure Shell server.
+Apr 29 21:30:45 k8s-master sshd[1539]: Server listening on 0.0.0.0 port 22.
+Apr 29 21:30:45 k8s-master sshd[1539]: Server listening on :: port 22.
+Apr 29 21:48:40 k8s-master systemd[1]: Stopping OpenBSD Secure Shell server...
+Apr 29 21:48:40 k8s-master sshd[1539]: Received signal 15; terminating.
+Apr 29 21:48:40 k8s-master systemd[1]: Stopped OpenBSD Secure Shell server.
+
+[2]+  Stopped                 sudo service sshd status
+gaurav@k8s-master:~$ 
+gaurav@k8s-master:~$ sudo service sshd start
+gaurav@k8s-master:~$ 
+gaurav@k8s-master:~$ sudo service sshd status
+● ssh.service - OpenBSD Secure Shell server
+   Loaded: loaded (/lib/systemd/system/ssh.service; enabled; vendor preset: enab
+   Active: active (running) since Mon 2019-04-29 21:48:47 IST; 2s ago
+  Process: 17827 ExecReload=/bin/kill -HUP $MAINPID (code=exited, status=0/SUCCE
+  Process: 17822 ExecReload=/usr/sbin/sshd -t (code=exited, status=0/SUCCESS)
+  Process: 18898 ExecStartPre=/usr/sbin/sshd -t (code=exited, status=0/SUCCESS)
+ Main PID: 18899 (sshd)
+    Tasks: 1 (limit: 4915)
+   CGroup: /system.slice/ssh.service
+           └─18899 /usr/sbin/sshd -D
+
+Apr 29 21:48:47 k8s-master systemd[1]: Starting OpenBSD Secure Shell server...
+Apr 29 21:48:47 k8s-master sshd[18899]: Server listening on 0.0.0.0 port 22.
+Apr 29 21:48:47 k8s-master sshd[18899]: Server listening on :: port 22.
+Apr 29 21:48:47 k8s
